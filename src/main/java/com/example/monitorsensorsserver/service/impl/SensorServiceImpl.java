@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -29,7 +30,18 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
+    public List<Sensor> getAllByValue(String value) {
+        String customValue = "%" + value + "%";
+        return sensorRepository.getAll(customValue);
+    }
+
+    @Override
     public String getDescription(String name) {
         return sensorRepository.getDescription(name);
+    }
+
+    @Override
+    public List<Sensor> getAll() {
+        return sensorRepository.findAll();
     }
 }

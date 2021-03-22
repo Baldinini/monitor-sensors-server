@@ -16,9 +16,9 @@ public class SensorRequestDto {
     @Size(max = 15)
     private String model;
     @NotNull
-    private Type type;
+    private Long idType;
     @NotNull
-    private Unit unit;
+    private Long idUnit;
     @Size(max = 40)
     private String location;
     @Size(max = 200)
