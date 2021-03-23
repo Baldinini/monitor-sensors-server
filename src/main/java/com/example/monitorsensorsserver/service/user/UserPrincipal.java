@@ -2,9 +2,12 @@ package com.example.monitorsensorsserver.service.user;
 
 import com.example.monitorsensorsserver.entity.Usr;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class UserPrincipal implements UserDetails {
 
@@ -18,7 +21,7 @@ public class UserPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return null;
+        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getRoleName().toString()));
     }
 
     @Override
