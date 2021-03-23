@@ -2,22 +2,23 @@ package com.example.monitorsensorsserver.controller;
 
 import com.example.monitorsensorsserver.dto.request.SensorRequestDto;
 import com.example.monitorsensorsserver.dto.response.SensorResponseDto;
+import com.example.monitorsensorsserver.entity.Sensor;
 import com.example.monitorsensorsserver.mapper.SensorMapper;
 import com.example.monitorsensorsserver.service.SensorService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,23 +40,20 @@ public class SensorController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void create(SensorRequestDto sensorDto) {
+    public void create(@RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: create");
         sensorService.save(sensorMapper.convertToEntity(sensorDto));
     }
 
     @PutMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public void update(SensorRequestDto sensorDto) {
+    public void update(@RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: update");
-        sensorService.save(sensorMapper.convertToEntity(sensorDto));
+        sensorService.save(modelMapper.map(sensorDto, Sensor.class));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable Long id) {
 
         log.warn("method: delete");
@@ -66,14 +64,14 @@ public class SensorController {
     public List<SensorResponseDto> getAll() {
 
         log.warn("method: getAll");
-        return sensorService.getAll().stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
+        return sensorService.getAll().stream().map(sensor -> modelMapper.map(sensor, SensorResponseDto.class)).collect(Collectors.toList());
     }
 
     @GetMapping("/{value}")
     public List<SensorResponseDto> getAllByValue(@PathVariable String value) {
 
         log.warn("method: getAllByValue");
-        return sensorService.getAllByValue(value).stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
+        return sensorService.getAllByValue(value).stream().map(sensor -> modelMapper.map(sensor, SensorResponseDto.class)).collect(Collectors.toList());
     }
 
     @GetMapping("/description/")

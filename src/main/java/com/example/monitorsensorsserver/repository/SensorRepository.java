@@ -7,13 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SensorRepository extends JpaRepository<Sensor, Long> {
-    @Query("SELECT s.description FROM sensors s WHERE s.name = :name")
+
+    @Query(value = "SELECT s.description FROM sensors s WHERE s.name = :name")
     String getDescription(String name);
 
-    @Query("SELECT s FROM sensors s " +
-           "WHERE s.name LIKE :value " +
-           "OR s.description LIKE :value " +
-           "OR s.location LIKE :value " +
-           "OR s.model LIKE :value")
+    @Query(value = "SELECT s FROM sensors s WHERE s.name LIKE :value OR s.description LIKE :value OR s.location LIKE :value OR s.model LIKE :value")
     List<Sensor> getAll(String value);
 }

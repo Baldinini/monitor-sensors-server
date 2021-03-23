@@ -1,8 +1,10 @@
 package com.example.monitorsensorsserver.service;
 
-import com.example.monitorsensorsserver.entity.User;
+import com.example.monitorsensorsserver.entity.Usr;
 
 public interface UserService {
-    void save(User user);
+    void save(Usr user);
+
+    Usr getByLogin(String login);
 
 }

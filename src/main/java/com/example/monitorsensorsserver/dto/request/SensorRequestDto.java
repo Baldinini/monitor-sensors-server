@@ -1,7 +1,5 @@
 package com.example.monitorsensorsserver.dto.request;
 
-import com.example.monitorsensorsserver.entity.Type;
-import com.example.monitorsensorsserver.entity.Unit;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

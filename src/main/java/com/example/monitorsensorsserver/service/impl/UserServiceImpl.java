@@ -1,6 +1,6 @@
 package com.example.monitorsensorsserver.service.impl;
 
-import com.example.monitorsensorsserver.entity.User;
+import com.example.monitorsensorsserver.entity.Usr;
 import com.example.monitorsensorsserver.repository.UserRepository;
 import com.example.monitorsensorsserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
+    public void save(Usr user) {
 
         String password = user.getPassword();
         user.setPassword(encoder.encode(password));
         userRepository.save(user);
+    }
+
+    @Override
+    public Usr getByLogin(String login) {
+
+        return userRepository.findByLogin(login).get();
     }
 }

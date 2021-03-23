@@ -8,20 +8,16 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-@Entity(name = "users")
+@Entity(name = "usr")
 @Data
-public class User {
+public class Usr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(value = EnumType.STRING)
+    @ManyToOne
     private Role role;
     private String login;
     private String password;
-
-    public enum Role {
-        VIEWER,
-        ADMIN
-    }
 }

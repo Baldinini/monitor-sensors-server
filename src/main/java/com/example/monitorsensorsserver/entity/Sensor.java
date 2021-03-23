@@ -24,8 +24,6 @@ public class Sensor {
     private Unit unit;
     private String location;
     private String description;
-    @Column(name = "range from")
     private int rangeFrom;
-    @Column(name = "range to")
     private int rangeTo;
 }
