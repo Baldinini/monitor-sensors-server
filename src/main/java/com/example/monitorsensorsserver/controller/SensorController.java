@@ -2,7 +2,6 @@ package com.example.monitorsensorsserver.controller;
 
 import com.example.monitorsensorsserver.dto.request.SensorRequestDto;
 import com.example.monitorsensorsserver.dto.response.SensorResponseDto;
-import com.example.monitorsensorsserver.entity.Sensor;
 import com.example.monitorsensorsserver.mapper.SensorMapper;
 import com.example.monitorsensorsserver.service.SensorService;
 import lombok.extern.log4j.Log4j2;
@@ -50,7 +49,7 @@ public class SensorController {
     public void update(@RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: update");
-        sensorService.save(modelMapper.map(sensorDto, Sensor.class));
+        sensorService.save(sensorMapper.convertToEntity(sensorDto));
     }
 
     @DeleteMapping("/{id}")
@@ -64,14 +63,14 @@ public class SensorController {
     public List<SensorResponseDto> getAll() {
 
         log.warn("method: getAll");
-        return sensorService.getAll().stream().map(sensor -> modelMapper.map(sensor, SensorResponseDto.class)).collect(Collectors.toList());
+        return sensorService.getAll().stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{value}")
     public List<SensorResponseDto> getAllByValue(@PathVariable String value) {
 
         log.warn("method: getAllByValue");
-        return sensorService.getAllByValue(value).stream().map(sensor -> modelMapper.map(sensor, SensorResponseDto.class)).collect(Collectors.toList());
+        return sensorService.getAllByValue(value).stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
     }
 
     @GetMapping("/description/")

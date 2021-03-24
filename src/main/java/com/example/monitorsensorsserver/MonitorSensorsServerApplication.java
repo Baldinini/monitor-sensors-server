@@ -4,7 +4,6 @@ import com.example.monitorsensorsserver.entity.Role;
 import com.example.monitorsensorsserver.entity.Type;
 import com.example.monitorsensorsserver.entity.Unit;
 import com.example.monitorsensorsserver.entity.Usr;
-import com.example.monitorsensorsserver.repository.UserRepository;
 import com.example.monitorsensorsserver.service.RoleService;
 import com.example.monitorsensorsserver.service.TypeService;
 import com.example.monitorsensorsserver.service.UnitService;
@@ -13,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = UserRepository.class)
 public class MonitorSensorsServerApplication implements CommandLineRunner {
 
     private final TypeService typeService;
