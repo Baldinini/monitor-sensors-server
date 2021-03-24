@@ -6,7 +6,6 @@ import com.example.monitorsensorsserver.entity.Sensor;
 import com.example.monitorsensorsserver.mapper.SensorMapper;
 import com.example.monitorsensorsserver.service.SensorService;
 import lombok.extern.log4j.Log4j2;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,21 +28,19 @@ public class SensorController {
 
     private final SensorService sensorService;
     private final SensorMapper sensorMapper;
-    private final ModelMapper modelMapper;
 
     @Autowired
-    public SensorController(SensorService sensorService, SensorMapper sensorMapper, ModelMapper modelMapper) {
+    public SensorController(SensorService sensorService, SensorMapper sensorMapper) {
 
         this.sensorService = sensorService;
         this.sensorMapper = sensorMapper;
-        this.modelMapper = modelMapper;
     }
 
     @PostMapping
     public void create(@RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: create");
-        sensorService.save(modelMapper.map(sensorDto, Sensor.class));
+        sensorService.save(sensorMapper.convertToEntity(sensorDto));
     }
 
     @PutMapping("/{id}")
