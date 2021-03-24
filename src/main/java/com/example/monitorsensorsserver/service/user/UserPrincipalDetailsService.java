@@ -3,7 +3,6 @@ package com.example.monitorsensorsserver.service.user;
 import com.example.monitorsensorsserver.entity.Usr;
 import com.example.monitorsensorsserver.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,7 +26,7 @@ public class UserPrincipalDetailsService implements UserDetailsService {
 
         Optional<Usr> user = userRepository.findByLogin(login);
         if (user.isPresent()) {
-            return new UserPrincipal(user.get());
+            return user.map(UserPrincipal::new).get();
         }
         throw new UsernameNotFoundException("Can't find user by this login: " + login);
     }

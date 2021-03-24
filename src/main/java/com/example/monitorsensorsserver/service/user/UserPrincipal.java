@@ -6,34 +6,40 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class UserPrincipal implements UserDetails {
-
     private Usr user;
+    private String login;
+    private String password;
+    private List<GrantedAuthority> authorities;
+
 
     public UserPrincipal(Usr user) {
-
-        this.user = user;
+        this.login = user.getLogin();
+        this.password = user.getPassword();
+        this.authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole().getRoleName().toString()));
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getRoleName().toString()));
+        return authorities;
     }
 
     @Override
     public String getPassword() {
 
-        return this.user.getPassword();
+        return password;
     }
 
     @Override
     public String getUsername() {
 
-        return this.user.getLogin();
+        return login;
     }
 
     @Override
