@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SensorRepository extends JpaRepository<Sensor, Long> {
 
@@ -13,4 +14,6 @@ public interface SensorRepository extends JpaRepository<Sensor, Long> {
 
     @Query(value = "SELECT s FROM sensors s WHERE s.name LIKE :value OR s.description LIKE :value OR s.location LIKE :value OR s.model LIKE :value")
     List<Sensor> getAll(String value);
+
+    Optional<Sensor> findById(Long id);
 }

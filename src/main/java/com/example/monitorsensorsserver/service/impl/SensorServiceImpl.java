@@ -44,4 +44,10 @@ public class SensorServiceImpl implements SensorService {
     public List<Sensor> getAll() {
         return sensorRepository.findAll();
     }
+
+    @Override
+    public Sensor getById(Long id) {
+
+        return sensorRepository.findById(id).get();
+    }
 }

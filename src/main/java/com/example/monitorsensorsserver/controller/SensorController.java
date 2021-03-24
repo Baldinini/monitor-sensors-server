@@ -2,6 +2,7 @@ package com.example.monitorsensorsserver.controller;
 
 import com.example.monitorsensorsserver.dto.request.SensorRequestDto;
 import com.example.monitorsensorsserver.dto.response.SensorResponseDto;
+import com.example.monitorsensorsserver.entity.Sensor;
 import com.example.monitorsensorsserver.mapper.SensorMapper;
 import com.example.monitorsensorsserver.service.SensorService;
 import lombok.extern.log4j.Log4j2;
@@ -42,14 +43,16 @@ public class SensorController {
     public void create(@RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: create");
-        sensorService.save(sensorMapper.convertToEntity(sensorDto));
+        sensorService.save(modelMapper.map(sensorDto, Sensor.class));
     }
 
-    @PutMapping
-    public void update(@RequestBody @Valid SensorRequestDto sensorDto) {
+    @PutMapping("/{id}")
+    public void update(@PathVariable Long id, @RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: update");
-        sensorService.save(sensorMapper.convertToEntity(sensorDto));
+        Sensor sensor = sensorMapper.convertToEntity(sensorDto);
+        sensor.setId(id);
+        sensorService.save(sensor);
     }
 
     @DeleteMapping("/{id}")

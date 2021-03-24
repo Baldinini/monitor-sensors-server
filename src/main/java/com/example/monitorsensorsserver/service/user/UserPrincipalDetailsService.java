@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,13 +15,11 @@ import java.util.Optional;
 public class UserPrincipalDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder encoder;
 
     @Autowired
-    public UserPrincipalDetailsService(UserRepository userRepository, PasswordEncoder encoder) {
+    public UserPrincipalDetailsService(UserRepository userRepository) {
 
         this.userRepository = userRepository;
-        this.encoder = encoder;
     }
 
     @Override
@@ -33,7 +30,7 @@ public class UserPrincipalDetailsService implements UserDetailsService {
             Usr usr = user.get();
             return User.builder()
                        .username(usr.getLogin())
-                       .password(encoder.encode(usr.getPassword()))
+                       .password(usr.getPassword())
                        .roles(usr.getRole().getRoleName().toString())
                        .build();
         }

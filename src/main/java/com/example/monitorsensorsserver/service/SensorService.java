@@ -14,4 +14,6 @@ public interface SensorService {
     String getDescription(String name);
 
     List<Sensor> getAll();
+
+    Sensor getById(Long id);
 }
