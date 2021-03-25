@@ -17,11 +17,4 @@ public class Unit {
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private UnitName unitName;
-
-    public enum UnitName {
-        BAR,
-        VOLTAGE,
-        CELSIUS,
-        PERCENT,
-    }
 }

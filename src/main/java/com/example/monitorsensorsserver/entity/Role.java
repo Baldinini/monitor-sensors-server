@@ -15,12 +15,6 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private RoleName roleName;
-
-
-    public enum RoleName {
-        VIEWER,
-        ADMIN
-    }
 }

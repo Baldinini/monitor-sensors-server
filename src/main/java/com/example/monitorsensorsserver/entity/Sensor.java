@@ -24,6 +24,6 @@ public class Sensor {
     private Unit unit;
     private String location;
     private String description;
-    private int rangeFrom;
-    private int rangeTo;
+    private Integer rangeFrom;
+    private Integer rangeTo;
 }

@@ -15,13 +15,6 @@ public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private TypeName typeName;
-
-    public enum TypeName {
-        PRESSURE,
-        VOLTAGE,
-        TEMPERATURE,
-        HUMIDITY,
-    }
 }

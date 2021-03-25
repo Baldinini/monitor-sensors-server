@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class MonitorSensorsServerApplication implements CommandLineRunner {
@@ -20,6 +21,9 @@ public class MonitorSensorsServerApplication implements CommandLineRunner {
     private final UnitService unitService;
     private final UserService userService;
     private final RoleService roleService;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Autowired
     public MonitorSensorsServerApplication(TypeService typeService, UnitService unitService, UserService userService, RoleService roleService) {
