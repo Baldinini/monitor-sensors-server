@@ -38,50 +38,50 @@ public class MonitorSensorsServerApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Type pressure = new Type();
-        pressure.setTypeName(Type.TypeName.PRESSURE);
-        typeService.save(pressure);
-        Type voltage = new Type();
-        voltage.setTypeName(Type.TypeName.VOLTAGE);
-        typeService.save(voltage);
-        Type temperature = new Type();
-        temperature.setTypeName(Type.TypeName.TEMPERATURE);
-        typeService.save(temperature);
-        Type humidity = new Type();
-        humidity.setTypeName(Type.TypeName.HUMIDITY);
-        typeService.save(humidity);
-
-        Unit bar = new Unit();
-        bar.setUnitName(Unit.UnitName.BAR);
-        unitService.save(bar);
-        Unit voltageUnit = new Unit();
-        voltageUnit.setUnitName(Unit.UnitName.VOLTAGE);
-        unitService.save(voltageUnit);
-        Unit celsius = new Unit();
-        celsius.setUnitName(Unit.UnitName.CELSIUS);
-        unitService.save(celsius);
-        Unit percent = new Unit();
-        percent.setUnitName(Unit.UnitName.PERCENT);
-        unitService.save(percent);
-
-        Role viewer = new Role();
-        viewer.setRoleName(Role.RoleName.VIEWER);
-        roleService.save(viewer);
-
-        Role adminRole = new Role();
-        adminRole.setRoleName(Role.RoleName.ADMIN);
-        roleService.save(adminRole);
-
-        Usr user = new Usr();
-        user.setLogin("user");
-        user.setPassword("1234");
-        user.setRole(viewer);
-        userService.save(user);
-
-        Usr admin = new Usr();
-        admin.setLogin("admin");
-        admin.setPassword("1234");
-        admin.setRole(adminRole);
-        userService.save(admin);
+//        Type pressure = new Type();
+//        pressure.setTypeName(Type.TypeName.PRESSURE);
+//        typeService.save(pressure);
+//        Type voltage = new Type();
+//        voltage.setTypeName(Type.TypeName.VOLTAGE);
+//        typeService.save(voltage);
+//        Type temperature = new Type();
+//        temperature.setTypeName(Type.TypeName.TEMPERATURE);
+//        typeService.save(temperature);
+//        Type humidity = new Type();
+//        humidity.setTypeName(Type.TypeName.HUMIDITY);
+//        typeService.save(humidity);
+//
+//        Unit bar = new Unit();
+//        bar.setUnitName(Unit.UnitName.BAR);
+//        unitService.save(bar);
+//        Unit voltageUnit = new Unit();
+//        voltageUnit.setUnitName(Unit.UnitName.VOLTAGE);
+//        unitService.save(voltageUnit);
+//        Unit celsius = new Unit();
+//        celsius.setUnitName(Unit.UnitName.CELSIUS);
+//        unitService.save(celsius);
+//        Unit percent = new Unit();
+//        percent.setUnitName(Unit.UnitName.PERCENT);
+//        unitService.save(percent);
+//
+//        Role viewer = new Role();
+//        viewer.setRoleName(Role.RoleName.VIEWER);
+//        roleService.save(viewer);
+//
+//        Role adminRole = new Role();
+//        adminRole.setRoleName(Role.RoleName.ADMIN);
+//        roleService.save(adminRole);
+//
+//        Usr user = new Usr();
+//        user.setLogin("user");
+//        user.setPassword("1234");
+//        user.setRole(viewer);
+//        userService.save(user);
+//
+//        Usr admin = new Usr();
+//        admin.setLogin("admin");
+//        admin.setPassword("1234");
+//        admin.setRole(adminRole);
+//        userService.save(admin);
     }
 }

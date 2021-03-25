@@ -24,16 +24,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .httpBasic().and()
+                .httpBasic()
+                    .and()
+                .rememberMe()
+                    .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST).hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and()
+                    .and()
                 .formLogin().permitAll()
-                .and()
+                    .and()
                 .logout()
                 .logoutSuccessUrl("/login");
     }
