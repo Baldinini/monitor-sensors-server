@@ -7,6 +7,9 @@ import com.example.monitorsensorsserver.mapper.SensorMapper;
 import com.example.monitorsensorsserver.service.SensorService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,10 +63,11 @@ public class SensorController {
     }
 
     @GetMapping
-    public List<SensorResponseDto> getAll() {
+    public List<SensorResponseDto> getAll(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "2") Integer size) {
 
         log.warn("method: getAll");
-        return sensorService.getAll().stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(page, size);
+        return sensorService.getAll(pageable).stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
     }
 
     @GetMapping("/description/")
