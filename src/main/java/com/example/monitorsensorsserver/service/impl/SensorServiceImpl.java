@@ -30,12 +30,6 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public List<Sensor> getAllByValue(String value) {
-        String customValue = "%" + value + "%";
-        return sensorRepository.getAll(customValue);
-    }
-
-    @Override
     public String getDescription(String name) {
         return sensorRepository.getDescription(name);
     }
@@ -43,11 +37,5 @@ public class SensorServiceImpl implements SensorService {
     @Override
     public List<Sensor> getAll() {
         return sensorRepository.findAll();
-    }
-
-    @Override
-    public Sensor getById(Long id) {
-
-        return sensorRepository.findById(id).get();
     }
 }

@@ -4,5 +4,5 @@ public enum TypeName {
     PRESSURE,
     VOLTAGE,
     TEMPERATURE,
-    HUMIDITY;
+    HUMIDITY,
 }

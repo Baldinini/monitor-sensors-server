@@ -66,13 +66,6 @@ public class SensorController {
         return sensorService.getAll().stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
     }
 
-    @GetMapping("/{value}")
-    public List<SensorResponseDto> getAllByValue(@PathVariable String value) {
-
-        log.warn("method: getAllByValue");
-        return sensorService.getAllByValue(value).stream().map(sensorMapper::convertToDto).collect(Collectors.toList());
-    }
-
     @GetMapping("/description/")
     public String getDescription(@RequestParam String name) {
 

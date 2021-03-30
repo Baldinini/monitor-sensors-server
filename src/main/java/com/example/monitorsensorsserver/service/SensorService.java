@@ -9,11 +9,7 @@ public interface SensorService {
 
     void delete(Long id);
 
-    List<Sensor> getAllByValue(String value);
-
     String getDescription(String name);
 
     List<Sensor> getAll();
-
-    Sensor getById(Long id);
 }

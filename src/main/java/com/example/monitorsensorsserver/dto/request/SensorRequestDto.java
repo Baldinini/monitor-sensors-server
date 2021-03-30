@@ -21,6 +21,6 @@ public class SensorRequestDto {
     private String location;
     @Size(max = 200)
     private String description;
-    private int rangeFrom;
-    private int rangeTo;
+    private Integer rangeFrom;
+    private Integer rangeTo;
 }

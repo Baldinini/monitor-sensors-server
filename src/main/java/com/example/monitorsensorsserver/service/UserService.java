@@ -6,5 +6,4 @@ public interface UserService {
     void save(Usr user);
 
     Usr getByLogin(String login);
-
 }
