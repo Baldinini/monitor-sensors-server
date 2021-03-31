@@ -38,8 +38,6 @@ class SensorServiceImplTest {
         sensorService.save(sensor);
         ArgumentCaptor<Sensor> argumentCaptor = ArgumentCaptor.forClass(Sensor.class);
         verify(sensorRepository).save(argumentCaptor.capture());
-        System.out.println(argumentCaptor.getValue().toString());
-        System.out.println(sensor.toString());
         assertThat(argumentCaptor.getValue()).isEqualTo(sensor);
     }
 
