@@ -28,7 +28,6 @@ class UserRepositoryTest {
     @Test
     void canFindByLogin() {
         Optional<Usr> optionalUsr = userRepository.findByLogin(user.getLogin());
-
         assertThat(optionalUsr).isNotNull();
         assertThat(optionalUsr.get()).isEqualTo(user);
     }
