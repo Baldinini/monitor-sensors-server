@@ -38,8 +38,7 @@ class MonitorSensorsServerApplicationTests {
     void correctLoginTest() throws Exception {
         mockMvc.perform(formLogin().user("user").password("1234"))
                 .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
