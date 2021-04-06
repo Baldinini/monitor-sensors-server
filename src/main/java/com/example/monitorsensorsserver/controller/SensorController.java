@@ -45,14 +45,14 @@ public class SensorController {
     public void create(@RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: create");
-        sensorService.save(sensorMapper.convertToEntity(sensorDto));
+        sensorService.save(sensorMapper.toEntity(sensorDto));
     }
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody @Valid SensorRequestDto sensorDto) {
 
         log.warn("method: update");
-        Sensor sensor = sensorMapper.convertToEntity(sensorDto);
+        Sensor sensor = sensorMapper.toEntity(sensorDto);
         sensor.setId(id);
         sensorService.save(sensor);
     }
@@ -69,7 +69,7 @@ public class SensorController {
 
         log.warn("method: getAll");
         Pageable pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(sensorService.getAll(pageable).stream().map(sensorMapper::convertToDto).collect(Collectors.toList()));
+        return ResponseEntity.ok(sensorService.getAll(pageable).stream().map(sensorMapper::toDto).collect(Collectors.toList()));
     }
 
     @GetMapping("/description")

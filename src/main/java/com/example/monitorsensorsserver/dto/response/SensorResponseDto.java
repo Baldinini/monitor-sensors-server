@@ -7,8 +7,8 @@ public class SensorResponseDto {
     private Long id;
     private String name;
     private String model;
-    private String type;
-    private String unit;
+    private String typeName;
+    private String unitName;
     private String location;
     private String description;
     private Integer rangeFrom;

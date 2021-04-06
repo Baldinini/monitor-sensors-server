@@ -45,15 +45,6 @@ class UnitServiceImplTest {
     @Test
     void canGetById() {
         given(unitRepository.findById(unit.getId())).willReturn(Optional.of(unit));
-        assertThat(unitService.getById(unit.getId())).isEqualTo(unit);
-    }
-
-    @Test
-    void thrownExceptionMethodGetById() {
-        Long id = 1L;
-        given(unitRepository.findById(id)).willReturn(Optional.empty());
-        assertThatThrownBy(() -> unitService.getById(id))
-                .isInstanceOf(NoSuchElementException.class)
-                .hasMessage("Can't get unit by this id: " + id);
+        assertThat(unitService.getById(unit.getId()).get()).isEqualTo(unit);
     }
 }

@@ -10,11 +10,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -45,15 +43,6 @@ class TypeServiceImplTest {
     @Test
     void canGetById() {
         given(typeRepository.findById(type.getId())).willReturn(Optional.of(type));
-        assertThat(typeService.getById(type.getId())).isEqualTo(type);
-    }
-
-    @Test
-    void thrownExceptionMethodGetById() {
-        Long id = 1L;
-        given(typeRepository.findById(id)).willReturn(Optional.empty());
-        assertThatThrownBy(() -> typeService.getById(id))
-                .isInstanceOf(NoSuchElementException.class)
-                .hasMessage("Can't get type by this id: " + id);
+        assertThat(typeService.getById(type.getId()).get()).isEqualTo(type);
     }
 }

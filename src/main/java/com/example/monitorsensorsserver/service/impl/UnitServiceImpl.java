@@ -6,7 +6,6 @@ import com.example.monitorsensorsserver.service.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -24,11 +23,7 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public Unit getById(Long id) {
-        Optional<Unit> unit = unitRepository.findById(id);
-        if (unit.isPresent()) {
-            return unit.get();
-        }
-        throw new NoSuchElementException("Can't get unit by this id: " + id);
+    public Optional<Unit> getById(Long id) {
+        return unitRepository.findById(id);
     }
 }
