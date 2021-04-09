@@ -1,6 +1,7 @@
 package com.example.monitorsensorsserver.service.impl;
 
 import com.example.monitorsensorsserver.entity.Unit;
+import com.example.monitorsensorsserver.entity.UnitName;
 import com.example.monitorsensorsserver.repository.UnitRepository;
 import com.example.monitorsensorsserver.service.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public Optional<Unit> getById(Long id) {
-        return unitRepository.findById(id);
+    public Optional<Unit> getByUnitName(String name) {
+
+        return unitRepository.findByUnitName(UnitName.valueOf(name));
     }
 }

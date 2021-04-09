@@ -66,8 +66,8 @@ public class SensorMapper {
     }
 
     private void mapSpecificFields(SensorRequestDto source, Sensor destination) {
-        destination.setType(typeService.getById(source.getIdType()).orElse(null));
-        destination.setUnit(unitService.getById(source.getIdUnit()).orElse(null));
+        destination.setType(typeService.getByTypeName(source.getTypeName()).orElse(null));
+        destination.setUnit(unitService.getByUnitName(source.getUnitName()).orElse(null));
     }
 
     public Sensor toEntity(SensorRequestDto dto) {

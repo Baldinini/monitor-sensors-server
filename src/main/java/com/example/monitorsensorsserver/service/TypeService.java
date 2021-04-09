@@ -7,5 +7,5 @@ import java.util.Optional;
 public interface TypeService {
     void save(Type type);
 
-    Optional<Type> getById(Long id);
+    Optional<Type> getByTypeName(String name);
 }

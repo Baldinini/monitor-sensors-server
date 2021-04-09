@@ -1,6 +1,7 @@
 package com.example.monitorsensorsserver.service.impl;
 
 import com.example.monitorsensorsserver.entity.Type;
+import com.example.monitorsensorsserver.entity.TypeName;
 import com.example.monitorsensorsserver.repository.TypeRepository;
 import com.example.monitorsensorsserver.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Optional<Type> getById(Long id) {
-        return typeRepository.findById(id);
+    public Optional<Type> getByTypeName(String name) {
+
+        return typeRepository.findByTypeName(TypeName.valueOf(name));
     }
 }

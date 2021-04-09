@@ -7,5 +7,5 @@ import java.util.Optional;
 public interface UnitService {
     void save(Unit unit);
 
-    Optional<Unit> getById(Long id);
+    Optional<Unit> getByUnitName(String name);
 }

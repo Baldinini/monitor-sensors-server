@@ -25,13 +25,13 @@ public class UserPrincipalDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
-        Optional<Usr> user = userRepository.findByLogin(login);
-        if (user.isPresent()) {
-            Usr usr = user.get();
+        Optional<Usr> userOptional = userRepository.findByLogin(login);
+        if (userOptional.isPresent()) {
+            Usr user = userOptional.get();
             return User.builder()
-                       .username(usr.getLogin())
-                       .password(usr.getPassword())
-                       .roles(usr.getRole().getRoleName().toString())
+                       .username(user.getLogin())
+                       .password(user.getPassword())
+                       .roles(user.getRole().getRoleName().toString())
                        .build();
         }
         throw new UsernameNotFoundException("Can't find user by this login: " + login);

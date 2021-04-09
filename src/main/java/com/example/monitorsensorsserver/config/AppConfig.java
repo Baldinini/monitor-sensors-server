@@ -4,16 +4,17 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
+import static org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance;
 
 @Configuration
 public class AppConfig {
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public PasswordEncoder passwordEncoder() {
+        return getInstance();
     }
 
     @Bean
