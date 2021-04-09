@@ -5,7 +5,6 @@ import com.example.monitorsensorsserver.entity.AuthResponse;
 import com.example.monitorsensorsserver.service.user.UserPrincipalDetailsService;
 import com.example.monitorsensorsserver.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -36,12 +35,7 @@ public class HelloController {
     @GetMapping("/hello")
     public ResponseEntity<?> sayHello() {
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Access-Control-Allow-Origin", "*");
-        headers.add("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
-        headers.add("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-
-        return ResponseEntity.ok().headers(headers).body("Hello!");
+        return ResponseEntity.ok().body("Hello!");
     }
 
     @PostMapping("/authentication")

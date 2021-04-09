@@ -23,14 +23,12 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserPrincipalDetailsService muUserDetailsService;
     private final JwtRequestFilter jwtRequestFilter;
-    private final OncePerRequestFilter corsFilter;
 
     @Autowired
-    public SecurityConfig(UserPrincipalDetailsService muUserDetailsService, PasswordEncoder passwordEncoder, JwtRequestFilter jwtRequestFilter, OncePerRequestFilter corsFilter) {
+    public SecurityConfig(UserPrincipalDetailsService muUserDetailsService, PasswordEncoder passwordEncoder, JwtRequestFilter jwtRequestFilter) {
 
         this.muUserDetailsService = muUserDetailsService;
         this.jwtRequestFilter = jwtRequestFilter;
-        this.corsFilter = corsFilter;
     }
 
     @Override
@@ -43,14 +41,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.addFilterBefore(corsFilter, SessionManagementFilter.class);
+        http.cors().disable();
         http
-                .cors()
-                .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/authentication").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers(HttpMethod.POST).hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
@@ -66,11 +62,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
 
         return super.authenticationManagerBean();
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-
-        web.ignoring().antMatchers(HttpMethod.OPTIONS);
     }
 }
