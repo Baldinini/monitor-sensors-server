@@ -13,4 +13,6 @@ public interface SensorService {
     String getDescription(String name);
 
     List<Sensor> getAll(Pageable pageable);
+
+    Sensor getById(Long id);
 }

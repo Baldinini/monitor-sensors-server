@@ -37,4 +37,10 @@ public class SensorServiceImpl implements SensorService {
     public List<Sensor> getAll(Pageable pageable) {
         return sensorRepository.findAll(pageable).getContent();
     }
+
+    @Override
+    public Sensor getById(Long id) {
+
+        return sensorRepository.findById(id).get();
+    }
 }

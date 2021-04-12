@@ -3,6 +3,7 @@ package com.example.monitorsensorsserver.entity;
 public class AuthResponse {
 
     private final String jwt;
+    private String userStatus;
 
     public AuthResponse(String jwt) {
 

@@ -25,8 +25,9 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin("*")
+
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Log4j2
 @RequestMapping("/sensors")
 public class SensorController {
@@ -77,5 +78,11 @@ public class SensorController {
 
         log.warn("method: getDescription");
         return sensorService.getDescription(name);
+    }
+
+    @GetMapping("/{id}")
+    public SensorResponseDto getById(@PathVariable Long id) {
+        log.warn("method: getById");
+        return sensorMapper.toDto(sensorService.getById(id));
     }
 }
