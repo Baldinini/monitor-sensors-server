@@ -1,8 +1,5 @@
 package com.example.monitorsensorsserver.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 public class AuthRequest {
     private String username;
     private String password;

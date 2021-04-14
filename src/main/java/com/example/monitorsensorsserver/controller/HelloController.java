@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.stream.Collectors;
+
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class HelloController {
@@ -48,6 +50,7 @@ public class HelloController {
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthResponse(jwt));
+        String userStatus = userDetails.getAuthorities().stream().map(Object::toString).collect(Collectors.joining());
+        return ResponseEntity.ok(new AuthResponse(jwt, userStatus));
     }
 }

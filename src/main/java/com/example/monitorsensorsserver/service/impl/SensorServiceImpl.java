@@ -4,7 +4,6 @@ import com.example.monitorsensorsserver.entity.Sensor;
 import com.example.monitorsensorsserver.repository.SensorRepository;
 import com.example.monitorsensorsserver.service.SensorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,8 +33,8 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public List<Sensor> getAll(Pageable pageable) {
-        return sensorRepository.findAll(pageable).getContent();
+    public List<Sensor> getAll() {
+        return sensorRepository.findAll();
     }
 
     @Override

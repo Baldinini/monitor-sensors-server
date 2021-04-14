@@ -18,5 +18,5 @@ public interface SensorRepository extends JpaRepository<Sensor, Long> {
 
     @Override
     @EntityGraph(attributePaths = {"type", "unit"})
-    Page<Sensor> findAll(Pageable pageable);
+    List<Sensor> findAll();
 }
